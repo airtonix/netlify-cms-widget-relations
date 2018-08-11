@@ -1,0 +1,73 @@
+{
+  "name": "netlify-cms-widget-relations",
+  "description": "An attempt to extend the relation widget to allow many to many.",
+  "keywords": [
+    "netlify",
+    "netlify-cms",
+    "cms",
+    "widget",
+    "relation"
+  ],
+  "version": "0.0.1",
+  "homepage": "https://github.com/airtonix/netlify-cms-widget-relations",
+  "license": "MIT",
+  "main": "dist/main.js",
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "onchange": "4.1.0",
+    "css-loader": "^0.28.11",
+    "html-webpack-plugin": "^3.2.0",
+    "netlify-cms": "^1.5.0",
+    "react": "^16.3.2",
+    "source-map-loader": "^0.2.3",
+    "style-loader": "^0.20.3",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.14",
+    "webpack-serve": "^0.3.1",
+    "webpack-config": "7.5.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1"
+  },
+  "peerDependencies": {
+    "react": "^16"
+  },
+  "serve": {
+    "hmr": true,
+    "hotClient": {
+      "host": "localhost"
+    },
+    "dev": {
+      "watchOptions": {
+        "poll": 300
+      }
+    },
+    "clipboard": false,
+    "logTime": true,
+    "logLevel": "info",
+    "openPath": "/#/collections/test/entries/test"
+  },
+  "scripts": {
+    "[ workstation/container: commands ]": "",
+    "container:dev:watch": "npx onchange \"./package.json\" \"./webpack_config/**/*\" --kill-signal=SIGINT -d 500 -v -p -i -- npm run container:dev",
+    "container:dev": "NODE_ENV=develop webpack-serve --config=./webpack_config --port=$PORT --host=$HOST",
+    "container:demo": "NODE_ENV=production webpack --config=./webpack_config --display errors-only --devtool source-map",
+    "container:prod": "NODE_ENV=production webpack",
+
+    "[ workstation: docker commands ]": "",
+    "docker:serve": "npm run docker:run -- --service-ports",
+    "docker:run": "docker-compose run --rm",
+    "docker:build": "docker-compose -f ./docker-compose--build.yml build image",
+    "docker:shell": "npm run docker:run -- as_builder /bin/sh",
+
+    "[ workstation: dev commands ]": "",
+    "dev": "npm run docker:serve -- as_server npm run container:dev:watch",
+    "prod": "npm run docker:run -- as_builder npm run container:prod",
+    "prepublishOnly": "npm run docker:run -- as_builder npm run container:prod"
+  }
+}
