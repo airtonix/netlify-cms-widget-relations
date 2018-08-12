@@ -1,30 +1,30 @@
-# netlify-cms-widget-\<name\>
+# netlify-cms-widget-reations
 
-[Check out a demo!](https://replace-with-widget-name.netlify.com/demo)
+<!-- [Check out a demo!](https://netlify-cms-widget-reations.netlify.com/demo) -->
 
-Overview of what your widget does.
+A widget that lets you list many records from mulitple other collections.
 
 ## Install
 
 As an npm package:
 
 ```shell
-npm install --save netlify-cms-widget-<name>
+npm install --save netlify-cms-widget-relations
 ```
 
 ```js
-import <name> from 'netlify-cms-widget-<name>'
+import <name> from 'netlify-cms-widget-relations'
 
-CMS.registerWidget('<name>', <name>Control, <name>Preview)
+CMS.registerWidget('relations', RelationsControl, RelationsPreview)
 ```
 
 Via `script` tag:
 
 ```html
-<script src="https://unpkg.com/netlify-cms-widget-<name>@^1.0.0"></script>
+<script src="https://unpkg.com/netlify-cms-widget-relations@^1.0.0"></script>
 
 <script>
-  CMS.registerWidget('<name>', <name>Control, <name>Preview)
+  CMS.registerWidget('relations', RelationsControl, RelationsPreview)
 </script>
 ```
 
@@ -34,12 +34,28 @@ Add to your Netlify CMS configuration:
 
 ```yaml
     fields:
-      - { name: <fieldname>, label: <fieldlabel>, widget: <name> }
+      - { name: <fieldname>, label: <fieldlabel>, widget: relations }
 ```
 
 ## Configuration
 
 Explain any custom configuration steps here, or omit the section if there are none.
+
+## Contributing
+
+### Preparation
+
+1. Clone or fork repo
+2. have Docker, Docker for Windows or Docker for Mac installed. Make sure you can use Docker Compose
+3. have any version of `npm` installed. This project only uses your `npm` to launch docker containers.
+
+### Development
+
+1. `$ npm run dev`
+
+### Production
+
+1. `$ npm run prod`
 
 ## Support
 
